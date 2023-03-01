@@ -1,20 +1,17 @@
-import HomePage from './views/HomePage.js'
-import AboutUs from './views/AboutUs.js'
+import mailApp from './apps/email/pages/mail-app.js'
+import keepApp from './apps/keep/pages/keep-app.js'
+import apsusApp from './pages/home-page.js'
+import about from './cmps/about-cmp.js'
 
-const { createRouter, createWebHashHistory } = VueRouter
 
-const routerOptions = {
-	history: createWebHashHistory(),
-	routes: [
-		{
-			path: '/',
-			component: HomePage,
-		},
-		{
-			path: '/about',
-			component: AboutUs,
-		},
-	],
-}
 
-export const router = createRouter(routerOptions)
+
+const routes = [
+    { path: '/', component: apsusApp },
+    { path: '/mail-app', component: mailApp},
+    { path: '/keep', component: keepApp},
+    {path: '/about', component: about}
+
+]
+
+export default routes;
