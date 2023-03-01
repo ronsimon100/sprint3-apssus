@@ -1,14 +1,17 @@
 export default{
     template: `
     <nav class="nav-bar">
+        <div>
 
-                <router-link to="/" class="home-btn" >Home</router-link>|
-                <router-link to="/about">About</router-link> |
-                <router-link to='/mail-app'>Mail</router-link>|
-                <router-link to='/keep'>Keep</router-link>
-
+                <RouterLink to="/" class="home-btn" >Home</RouterLink>|
+                <RouterLink to="/about">About</RouterLink> |
+                <RouterLink to="/keep">Keep</RouterLink>|
+                <RouterLink to="/mail-app">Mail</RouterLink>|
+l
         </div>
     </nav>`,
     methods: {
     }
 }
+
+
