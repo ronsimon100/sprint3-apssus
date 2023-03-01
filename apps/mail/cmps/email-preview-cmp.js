@@ -1,7 +1,7 @@
 
-import mailTxt from './mailTxt,js'
-import mailService from '../services/mail-service.js';
-import {eventBus,EMAILS_UNREAD, REPLY} from '../../../event-bus.js'
+import mailCompose from './EmailCompose.js'
+import mailService from '../../mail/services/Email-service.js';
+import { eventBus } from '../../../services/event-bus.service.js'
 
 
 
@@ -77,7 +77,7 @@ export default {
         this.emailsUnRead = mailService.getNumOfUnRead()
     },
     components: {
-        mailTxt,
+        mailCompose,
     },
     methods: {
         readEmail() {
@@ -86,7 +86,7 @@ export default {
             mailService.toggleUnread(this.email)
             var unread = mailService.updateNumOfUnread(-1)
             setTimeout(() => {
-                eventBus.$emit(EMAILS_UNREAD, unread)
+                eventBus.emit(EMAILS_UNREAD, unread)
 
             }, 700);
         },
@@ -95,7 +95,7 @@ export default {
             mailService.toggleUnread(this.email)
             if (this.email.isRead) var unread = mailService.updateNumOfUnread(-1)
             else var unread = mailService.updateNumOfUnread(1)
-            eventBus.$emit(EMAILS_UNREAD, unread)
+            eventBus.emit(EMAILS_UNREAD, unread)
             
         },
         deleteEmail() {
@@ -106,7 +106,7 @@ export default {
             .then(()=> {
                 
                 if (unread) {
-                eventBus.$emit(EMAILS_UNREAD, mailService.updateNumOfUnread(-1))
+                eventBus.emit(EMAILS_UNREAD, mailService.updateNumOfUnread(-1))
             }
             })
         },
@@ -114,7 +114,7 @@ export default {
             console.log(this.email)
             mailService.saveEmailForReply (this.email)
             this.$router.push('/mail-app/compose')
-            eventBus.$emit(REPLY, this.email)
+            eventBus.$emit(ema, this.email)
         }
     }
 }
