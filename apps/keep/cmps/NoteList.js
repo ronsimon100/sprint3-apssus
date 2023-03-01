@@ -9,7 +9,7 @@ export default {
                     <NotePreview :note="note"/>
                     <RouterLink :to="'/note/'+note.id">Details</RouterLink> |
                     <RouterLink :to="'/note/edit/'+note.id">Edit</RouterLink> |
-                    <button hidden @click="showDetails(note.id)">Details</button>
+                    <!-- <button hidden @click="showDetails(note.id)">Details</button> -->
                     <button @click="remove(note.id)">x</button>
                 </li>
             </ul>
@@ -18,10 +18,11 @@ export default {
     methods: {
         remove(noteId) {
             this.$emit('remove', noteId)
-        },
-        showDetails(noteId){
-            this.$emit('show-details', noteId)
-        },
+        }
+        // ,
+        // showDetails(noteId){
+        //     this.$emit('show-details', noteId)
+        // },
     },
     components: {
         NotePreview,
