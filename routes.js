@@ -1,5 +1,5 @@
 import mailApp from './apps/email/pages/mail-app.js'
-import keepApp from './apps/keep/pages/keep-app.js'
+import keepApp from './apps/keep/pages/keepApp.js'
 import apsusApp from './pages/home-page.js'
 import about from './cmps/about-cmp.js'
 
