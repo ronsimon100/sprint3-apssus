@@ -8,6 +8,7 @@ export default {
     template: `
     <section class="email-list-show">
         <div class="mail-title" v-if="isInbox">Inbox
+        <input type="search"  id="search-email-input" v-model="filterBy.searchTxt" autofocus placeholder="🔍 Search mail" >
             <select class="read-unread-all" v-model="filterBy.options">
                 <option value="all" selected>All</option>
                 <option value="unread">Unread</option>

@@ -7,7 +7,7 @@ export default {
     props: ['email'],
     template: `
         <section class="email-compose">
-            <div class="mail-title">Email compose</div>
+            <!-- <div class="mail-title">Email compose</div> -->
             
             <input placeholder="To:" v-model="composed.to" autofocus> 
             <input placeholder="Subject" v-model="composed.subject">

@@ -9,18 +9,19 @@ export default {
   
         <header-cmp></header-cmp>
         <router-view></router-view>
-        <mail-List :emails="emails"></mail-List>
+        
         <div class="toast-msg" v-if="toastMsg">{{toastMsg}}</div>
         <div id="hamburger" @click="toggleNav" v-if="isMobile">🍔</div>
         <div class="content-container" @click="closeNav">
-
             <div class="inner-links-container" :class="navState" >
                 <router-link :to="'/mail-app/compose'"><button>compose</button></router-link> 
                 <router-link :to="'/mail-app/inbox'"><button>inbox</button></router-link> 
                 <router-link :to="'/mail-app/sent'"><button>sent</button></router-link> 
             </div>
+            <mail-List :emails="emails"></mail-List>
             <router-view class="email-list-show" @toast="showToast"></router-view>
         </div>
+        
     </section>
     `,
     data() {
@@ -68,7 +69,6 @@ export default {
                 this.emails = emails
             })
         this.unreadMails = mailService.getNumOfUnRead()
-
     },
     components: {
         mailService,
