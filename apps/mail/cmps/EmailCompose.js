@@ -1,67 +1,71 @@
+import mailService from "../services/Email-service.js"
+import utilService from '../../../services/util-service.js';
+import { eventBus } from '../../../services/event-bus.service.js'
+
+
 export default {
-    props: ['currEmail'],
-    template: ` 
-    <section class="body-txt"  >
-<div class="body-header">
-    <h4 class="body-header-txt">{{currEmail.subject}}</h4>
-</div>
+    props: ['email'],
+    template: `
+        <section class="email-compose">
+            <!-- <div class="mail-title">Email compose</div> -->
+            
+            <input placeholder="To:" v-model="composed.to" autofocus> 
+            <input placeholder="Subject" v-model="composed.subject">
+            <textarea class="compose-body" rows="8" cols="50" placeholder="email text" v-model="composed.body"></textarea>
+            <button id="send-mail-btn" class="btn  btn-success" @click="send">Send</button>
 
-<div class="body-body" >
-<span class='text-description'>From: </span>{{currEmail.from}} <br>
- <span class='text-description'>At: </span>  {{formatDate}} <br>
- <span class='text-description'>Body: </span>{{currEmail.body}}
-</div>
-
-     </section>
-    `
-    ,
+        </section> 
+    `,
     data() {
         return {
-            isLongText: false,
-            compressedEmail: true,
-            hour:'',
-            min:'',
-            day:'',
-            month:'',
-
+            composed: {
+                type: 'sent', //shuld be named mailBoxType
+                id: null,
+                subject: '',
+                body: '',
+                isRead: true,
+                date: '',
+                from: '',
+                to: '',
+            },
+            // replyedTo: null
 
         }
-    },
-
-    methods: {
-        toggleTxt() {
-            this.compressedEmail = !this.compressedEmail
-        },
-
-
-    },
-    computed: {
-        getShortText() {
-            if (this.txt.length > 30) {
-                return this.txt.slice(0, 33) + '...'
-            }
-            else return this.txt
-
-        },
-        getButtonText() {
-            if (this.compressedEmail) return 'show more'
-            else return 'show less'
-        },
-        formatDate() {
-            // return
-            this.hour = new Date(this.currEmail.date).getHours()
-            this.min = new Date(this.currEmail.date).getMinutes()
-            this.day = new Date(this.currEmail.date).getDay()
-            this.month = new Date(this.currEmail.date).getMonth()+1
-            return `${this.hour}:${this.min}, ${this.day}.${this.month}`
-        }
-
-
     },
     created() {
+// 
 
+        this.composed.id = utilService.makeId()
+        eventBus.on(replyTo, (email) => {
+            this.$nextTick(() => {
+                this.composed.to = email.from
+            })
+        })
+        var replyTo = mailService.getEmailForReply()
+        if (replyTo) {
+            this.composed.to = 'To: ' + replyTo.from
+            this.composed.subject = 'Re: ' + replyTo.subject
+            this.composed.body = `${replyTo.from} wrote: \n ${replyTo.body}`
+        }
+        
+        
     },
-    components: {
+  
+    methods: {
+        send() {
+            this.composed.date = Date.now()
+            mailService.sendEmail(this.composed)
+                .then(() => {
+                    this.$router.go(-1)
+                    this.emit('toast', 'Email was Sent')
+                    if (this.composed.to === 'self') {
+                        var unread = mailService.updateNumOfUnread(1)
+                        eventBus.emit(EMAILS_UNREAD, unread)
+                        
+                    }
+                }).then(utilService.saveToStorage(EMAIL_KEY))
+        },
+        
+    },
 
-    }
 }

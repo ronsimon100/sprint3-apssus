@@ -1,17 +1,77 @@
-export default{
-    template: `
-    <nav class="nav-bar">
-        <div>
 
-                <RouterLink to="/" class="home-btn" >Home</RouterLink>|
-                <RouterLink to="/about">About</RouterLink> |
-                <RouterLink to="/keep">Keep</RouterLink>|
-                <RouterLink to="/mail-app">Mail</RouterLink>|
-l
+import { eventBus } from "../services/event-bus.service.js"
+import mailService from "../apps/mail/services/Email-service.js"
+
+export default {
+    template: `
+<section>
+<header class="app-header">
+         <router-link class="main-app-header-logo logo" :to="'/'" > </router-link> 
+          <div class="unread-mail-count"> 
+               <router-link :to="'/mail-app'" exact> <i class="far fa-envelope"></i> </router-link> 
+               <span>{{numOfUnread}}</span>
+           </div>
+          <div class="apps" @click="toggleAppsNav"><i class="fas fa-th"></i></div>
+        <div class="apps-btn-modal" :class='appsModalState' >
+                 <div class="apps-btn-card ">
+                 <router-link :to="'/mail-app'" exact> <i class="fas fa-at"></i> </router-link>   
+                 
+                   <p>Email</p>
+                 </div>
+                 <div class="apps-btn-card ">               
+               <router-link :to="'/'" exact> <i class="fas fa-home"></i> </router-link>   
+                   <p>Home</p>
+                 </div>
+                 <div class="apps-btn-card ">
+                   <router-link :to="'/keep'" exact> <i class="fas fa-sticky-note"></i> </router-link> 
+                   <p>Keeps</p>
+                 </div>
+                 <div class="apps-btn-card ">
+                   <router-link :to="'/'" exact> <i class="fas fa-book" :class="showDisabled" ></i> </router-link> 
+                   <p>Books</p>
+                </div>
+
         </div>
-    </nav>`,
+        </header>
+
+</section>
+`,
+    data() {
+        return {
+            unreadMails: '',
+            appsNavShown: false
+
+        }
+    },
+
     methods: {
+
+        toggleAppsNav() {
+            this.appsNavShown = !this.appsNavShown
+        }
+    },
+    computed: {
+        numOfUnread() {
+            return this.unreadMails;
+        },
+        showDisabled(){
+            return 'disabled'
+        },
+        appsModalState(){
+            if (this.appsNavShown) return 'open-apps-modal'
+            else return 'close-apps-modal'
+        }
+    },
+
+    created() {
+        
+    },
+    components: {
+        mailService,
+
     }
+
+
 }
 
 
