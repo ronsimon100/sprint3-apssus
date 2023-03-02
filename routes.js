@@ -2,7 +2,7 @@ import mailApp from './apps/mail/pages/EmailApp.js'
 import keepApp from './apps/keep/pages/keepApp.js'
 import apsusApp from './views/HomePage.js'
 import about from './views/AboutUs.js'
-import mailList from './apps/mail/cmps/EmailList.js'
+import mailList from './apps/mail/pages/EmailList.js'
 import EmailCompose from './apps/mail/cmps/EmailCompose.js'
 
 

@@ -1,13 +1,15 @@
 import mailService from '../services/Email-service.js'
-import mailList from'../cmps/EmailList.js'
+import mailList from './EmailList.js'
 import AppHeader from '../../../cmps/AppHeader.js'
+import emailService from '../services/Email-service.js'
 
 export default {
     template: `
     <section class="mail-app">
   
-        
         <header-cmp></header-cmp>
+        <router-view></router-view>
+        <mail-List :emails="emails"></mail-List>
         <div class="toast-msg" v-if="toastMsg">{{toastMsg}}</div>
         <div id="hamburger" @click="toggleNav" v-if="isMobile">🍔</div>
         <div class="content-container" @click="closeNav">
@@ -23,6 +25,7 @@ export default {
     `,
     data() {
         return {
+            emails: null,
             toastMsg: null,
             navOpen: false,
             unreadMails: ''
@@ -49,16 +52,21 @@ export default {
         numOfUnread() {
             return this.unreadMails;
         },
-        navState(){
+        navState() {
             return (this.navOpen) ? 'nav-open' : 'nav-closed'
         },
         isMobile() {
             return document.body.clientWidth < 780
         },
-    
+
 
     },
     created() {
+        emailService.getEmails()
+            .then((emails) => {
+                console.log(emails);
+                this.emails = emails
+            })
         this.unreadMails = mailService.getNumOfUnRead()
 
     },

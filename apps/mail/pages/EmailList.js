@@ -1,25 +1,32 @@
 
 import emailPreview from './Email-preview-cmp.js'
-import emailService from '../services/Email-service.js'
+import utilService from '../../../services/util-service.js';
+import mailService from '../services/Email-service.js'
 
 export default {
-    props:['emails'],
+    props: ['emails'],
     template: `
-        <section class="email-list">
-            <ul>
-                <li v-for="email in emails" :key="email.id">
-                    <EmailPreview :email="email"/>
-                    <RouterLink :to="'/email/'+email.id">Details</RouterLink> |
-                    <RouterLink :to="'/email/edit/'+email.id">Edit</RouterLink> |
-                    <button hidden @click="showDetails(email.id)">Details</button>
-                    <button @click="remove(email.id)">x</button>
-                </li>
-            </ul>
-        </section>
+    <section class="email-list-show">
+        <div class="mail-title" v-if="isInbox">Inbox
+            <select class="read-unread-all" v-model="filterBy.options">
+                <option value="all" selected>All</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
+            </select>
+        </div>
+        <div class="mail-title" v-else>Recived
+            <input type="search"  id="search-email-input" v-model="filterBy.searchTxt" autofocus placeholder="🔍 Search mail" >
+        </div>
+        <!-- <email-preview v-for="(currEmail, idx) in emails" :key="currEmail.id"
+            :email="currEmail" :idx="idx" :is-inbox="isInbox"> 
+        </email-preview>  -->
+            <div  v-for="(currEmail, idx) in emails" >
+                <email-Preview   :email="currEmail" ></email-Preview>
+            </div>
+    </section>
     `,
     data() {
         return {
-            emails: null,
             mailBoxType: this.$router.currentRoute.name,
             filterBy: {
                 searchTxt: '',
@@ -30,12 +37,11 @@ export default {
     methods: {
     },
     computed: {
-        //to do - fins a better way to filter whitout repeating code
         filteredEmails() {
             if (!this.emails) return
             if (this.filterBy.options === 'all') {
                 var filtered = this.emails.filter(email => {
-                    
+
                     return email.type === this.mailBoxType &&
                         (email.body.toLowerCase().includes(this.filterBy.searchTxt.toLowerCase()) ||
                             email.subject.toLowerCase().includes(this.filterBy.searchTxt.toLowerCase()) ||
@@ -64,26 +70,27 @@ export default {
         isInbox() {
             return this.mailBoxType === 'inbox'
         }
-   
+
     },
 
     created() {
-        emailService.getEmails()
-            .then((emails) => {
-                this.emails = emails
-            })        
+        mailService.getEmails()
+            .then((email) => {
+                this.email = email
+            })
+        console.log(this.email);
     },
- 
+
     components: {
         emailPreview,
     },
 
     watch: {
-        '$route.path': function() {
+        '$route.path': function () {
             console.log(this.$router.currentRoute);
             this.mailBoxType = this.$router.currentRoute.name
             this.filterBy.options = 'all'
         },
-        
+
     }
 }

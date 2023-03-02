@@ -55,15 +55,15 @@ export default {
         send() {
             this.composed.date = Date.now()
             mailService.sendEmail(this.composed)
-                .then((email) => {
+                .then(() => {
                     this.$router.go(-1)
-                    this.$emit('toast', 'Email was Sent')
+                    this.emit('toast', 'Email was Sent')
                     if (this.composed.to === 'self') {
                         var unread = mailService.updateNumOfUnread(1)
-                        eventBus.$emit(EMAILS_UNREAD, unread)
+                        eventBus.emit(EMAILS_UNREAD, unread)
                         
                     }
-                }).then(utilService.saveToStorage('email',email))
+                }).then(utilService.saveToStorage(EMAIL_KEY))
         },
         
     },
