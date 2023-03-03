@@ -5,7 +5,7 @@ import UserMsg from './cmps/UserMsg.js'
 import { router } from './routes.js'
 
 const options = {
-	template: `
+    template: `
         <section>
             <EmailDetails />
             <AppHeader />

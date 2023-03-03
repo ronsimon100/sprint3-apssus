@@ -81,8 +81,8 @@ function getNoteById(noteId) {
 
 function getEmptyNote(type = 'NoteTxt', info = { txt: 'New Note' }) {
     return {
-        id: utilService.makeId,
-        createdAt: Date.now,
+        // id: utilService.makeId(),
+        createdAt: Date.now(),
         type,
         isPinned: false,
         style: { backgroundColor: '#00d' },
@@ -101,18 +101,18 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#000000'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'
                 }
             }, {
-                id: 'n101',
+                id: 'n10h',
                 createdAt: 1112222,
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#000000'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'

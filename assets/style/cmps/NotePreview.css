@@ -1,0 +1,16 @@
+.note-preview {
+    background-color: violet;
+    height: 200px;
+    width: 300px;
+    font-size: 1rem;
+
+    
+}
+.note-list{
+    column-count: 3;
+    list-style: none;
+}
+
+li {
+    break-inside: avoid;
+}
