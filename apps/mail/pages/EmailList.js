@@ -1,10 +1,9 @@
 
 import emailPreview from './Email-preview-cmp.js'
-import utilService from '../../../services/util-service.js';
 import mailService from '../services/Email-service.js'
 
 export default {
-    props: ['emails'],
+    
     template: `
     <section class="email-list-show">
         <div class="mail-title" v-if="isInbox">Inbox
@@ -18,11 +17,10 @@ export default {
         <div class="mail-title" v-else>Recived
             <input type="search"  id="search-email-input" v-model="filterBy.searchTxt" autofocus placeholder="🔍 Search mail" >
         </div>
-        <!-- <email-preview v-for="(currEmail, idx) in emails" :key="currEmail.id"
-            :email="currEmail" :idx="idx" :is-inbox="isInbox"> 
-        </email-preview>  -->
             <div  v-for="(currEmail, idx) in emails" >
-                <email-Preview   :email="currEmail" ></email-Preview>
+            <email-preview v-for="(currEmail, idx) in emails" :key="currEmail.id"
+            :email="currEmail" :idx="idx" :is-inbox="isInbox"> 
+        </email-preview> 
             </div>
     </section>
     `,
@@ -76,10 +74,10 @@ export default {
 
     created() {
         mailService.getEmails()
-            .then((email) => {
-                this.email = email
+            .then((emails) => {
+                this.emails = emails
             })
-        console.log(this.email);
+        console.log(this.emails);
     },
 
     components: {

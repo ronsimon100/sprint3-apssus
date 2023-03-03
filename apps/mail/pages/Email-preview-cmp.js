@@ -1,7 +1,7 @@
 
-import mailFilter from '../cmps/EmailFilter.js'
+import mailDetails from '../cmps/EmailDetails.js'
 import mailService from '../services/Email-service.js';
-import { eventBus } from '../../../services/event-bus.service.js'
+import { eventBus, REPLY, EMAILS_UNREAD } from '../../../services/event-bus.service.js'
 import utilService from '../../../services/util-service.js'
 
 export default {
@@ -77,7 +77,7 @@ export default {
         this.emailsUnRead = mailService.getNumOfUnRead()
     },
     components: {
-        mailFilter
+        mailDetails
     },
     methods: {
         readEmail() {
@@ -86,7 +86,7 @@ export default {
             mailService.toggleUnread(this.email)
             var unread = mailService.updateNumOfUnread(-1)
             setTimeout(() => {
-                eventBus.emit('EMAILS_UNREAD', unread)
+                eventBus.emit(EMAILS_UNREAD, unread)
 
             }, 700);
         },
@@ -95,7 +95,7 @@ export default {
             mailService.toggleUnread(this.email)
             if (this.email.isRead) var unread = mailService.updateNumOfUnread(-1)
             else var unread = mailService.updateNumOfUnread(1)
-            eventBus.emit('EMAILS_UNREAD', unread)
+            eventBus.emit(EMAILS_UNREAD, unread)
             
         },
         deleteEmail() {
@@ -104,9 +104,8 @@ export default {
             var unread = !this.email.isRead
             mailService.deleteEmail(this.email)
             .then(()=> {
-            utilService.saveToStorage('delete', this.email)
                 if (unread) {
-                eventBus.emit('EMAILS_UNREAD', mailService.updateNumOfUnread(-1))
+                eventBus.emit(EMAILS_UNREAD, mailService.updateNumOfUnread(-1))
                 
             }
             })
@@ -114,9 +113,9 @@ export default {
         reply() {
             console.log(this.email)
             mailService.saveEmailForReply (this.email)
-            this.$router.push('/apps/mail/cmps/EmailCompose.js')
-            eventBus.emit('reply', this.email)
-            utilService.saveToStorage('reply',this.email)
+            this.$router.push('/email-app/compose')
+            eventBus.emit(REPLY, this.email)
+            utilService.saveToStorage('email',this.email)
         }
     }
 }

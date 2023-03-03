@@ -17,7 +17,7 @@ export default {
 var emailsDB = []
 
 
-const EMAIL_KEY = 'email'
+const EMAIL_KEY = 'emails'
 const lorem = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, consectetur magni? Consectetur architecto earum soluta repellat assumenda quae dolor amet quasi voluptas voluptatum, beatae vitae velit ullam quod ducimus itaque?'
 const SELF = 'self'
 const INBOX = 'inbox'
@@ -25,13 +25,13 @@ var numOfUnread
 var emailReply
 
 function getEmails() {
-    var email = utilService.getFromStorage(EMAIL_KEY)
-    if (!email || !email.length) {
-        email = _createEmails()
+    var emails = utilService.getFromStorage(EMAIL_KEY)
+    if (!emails || !emails.length) {
+        emails = _createEmails()
     }
-    emailsDB = email
-    utilService.saveToStorage(EMAIL_KEY, email)
-    return Promise.resolve(email)
+    emailsDB = emails
+    utilService.saveToStorage(EMAIL_KEY, emails)
+    return Promise.resolve(emails)
 }
 
 
@@ -67,7 +67,7 @@ function _addToEmails(email) {
 
 function _createExampleEmail(type, subject, body, date, from = 'lorem', to = 'ron') {
     return {
-        type, //shuld be named mailBoxType
+        type, 
         id: utilService.makeId(),
         subject,
         body,

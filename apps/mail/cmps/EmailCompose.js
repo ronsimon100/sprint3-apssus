@@ -1,13 +1,13 @@
 import mailService from "../services/Email-service.js"
 import utilService from '../../../services/util-service.js';
-import { eventBus } from '../../../services/event-bus.service.js'
+import { eventBus, REPLY, EMAILS_UNREAD } from '../../../services/event-bus.service.js'
 
 
 export default {
     props: ['email'],
     template: `
         <section class="email-compose">
-            <!-- <div class="mail-title">Email compose</div> -->
+            <div class="mail-title">Email compose</div>
             
             <input placeholder="To:" v-model="composed.to" autofocus> 
             <input placeholder="Subject" v-model="composed.subject">
@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             composed: {
-                type: 'sent', //shuld be named mailBoxType
+                type: 'sent',
                 id: null,
                 subject: '',
                 body: '',
@@ -27,8 +27,7 @@ export default {
                 date: '',
                 from: '',
                 to: '',
-            },
-            // replyedTo: null
+            }
 
         }
     },
@@ -36,7 +35,7 @@ export default {
 // 
 
         this.composed.id = utilService.makeId()
-        eventBus.on(replyTo, (email) => {
+        eventBus.on(REPLY, (email) => {
             this.$nextTick(() => {
                 this.composed.to = email.from
             })
@@ -63,7 +62,7 @@ export default {
                         eventBus.emit(EMAILS_UNREAD, unread)
                         
                     }
-                }).then(utilService.saveToStorage(EMAIL_KEY))
+                })
         },
         
     },

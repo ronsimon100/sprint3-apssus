@@ -1,5 +1,6 @@
 'use strict'
-
+export const EMAILS_UNREAD = 'unread-mails';
+export const REPLY = 'reply'
 function createEventEmitter(defaultHandler = null){
     const listenersMap = {}
 

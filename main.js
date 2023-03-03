@@ -7,6 +7,7 @@ import { router } from './routes.js'
 const options = {
 	template: `
         <section>
+            <EmailDetails />
             <AppHeader />
             <RouterView />
             <AppFooter />

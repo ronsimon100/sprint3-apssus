@@ -4,6 +4,8 @@ import apsusApp from './views/HomePage.js'
 import about from './views/AboutUs.js'
 import mailList from './apps/mail/pages/EmailList.js'
 import EmailCompose from './apps/mail/cmps/EmailCompose.js'
+import EmailDetails from './apps/mail/cmps/EmailDetails.js'
+
 
 
 
@@ -15,6 +17,7 @@ const options = {
     { path: '/mail-app', component: mailApp, children:[
         { path: '', component: mailList, name:'inbox' },
         { path: 'inbox', component: mailList, name:'inbox' },
+        { path: 'details', component: EmailDetails, name:'details' },
         { path: 'compose', component: EmailCompose, name:'compose'},
         { path: 'sent', component: mailList, name:'sent'},
     ] },

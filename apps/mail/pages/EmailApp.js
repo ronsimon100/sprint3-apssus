@@ -1,15 +1,13 @@
 import mailService from '../services/Email-service.js'
 import mailList from './EmailList.js'
 import AppHeader from '../../../cmps/AppHeader.js'
-import emailService from '../services/Email-service.js'
+
 
 export default {
     template: `
     <section class="mail-app">
   
-        <header-cmp></header-cmp>
-        <router-view></router-view>
-        
+        </AppHeader>
         <div class="toast-msg" v-if="toastMsg">{{toastMsg}}</div>
         <div id="hamburger" @click="toggleNav" v-if="isMobile">🍔</div>
         <div class="content-container" @click="closeNav">
@@ -63,7 +61,7 @@ export default {
 
     },
     created() {
-        emailService.getEmails()
+        mailService.getEmails()
             .then((emails) => {
                 console.log(emails);
                 this.emails = emails
