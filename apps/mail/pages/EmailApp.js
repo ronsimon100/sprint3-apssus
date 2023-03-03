@@ -1,5 +1,5 @@
 import mailService from '../services/Email-service.js'
-import mailList from './EmailList.js'
+import EmailList from './EmailList.js'
 import AppHeader from '../../../cmps/AppHeader.js'
 
 
@@ -70,7 +70,7 @@ export default {
     },
     components: {
         mailService,
-        mailList,
+        EmailList,
         AppHeader
     }
 }
