@@ -4,6 +4,9 @@ import apsusApp from './views/HomePage.js'
 import about from './views/AboutUs.js'
 import mailList from './apps/mail/pages/EmailList.js'
 import EmailCompose from './apps/mail/cmps/EmailCompose.js'
+import BookDetails from './apps/books/pages/BookDetails.js'
+import BookEdit from './apps/books/pages/BookEdit.js'
+import BookIndex from './apps/books/pages/BookIndex.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
 const options = {
@@ -18,6 +21,18 @@ const options = {
     ] },
     { path: '/keep', component: keepApp},
     {path: '/about', component: about},
+    {
+      path: '/books',
+      component: BookIndex
+  },
+  {
+      path: '/book/:bookId',
+      component: BookDetails
+  },
+  {
+      path: '/book/edit',
+      component: BookEdit
+  },
 ],
 }
 export const router = createRouter(options)

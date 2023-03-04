@@ -22,6 +22,7 @@ export default {
                 <email-Preview   :email="currEmail" ></email-Preview>
             </div> -->
     </section>
+    
     `,
     data() {
         return {

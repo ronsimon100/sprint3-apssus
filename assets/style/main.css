@@ -157,12 +157,12 @@ color: black
 .apps-btn-card:hover{
 background-color: #172633c2;
 }
-.disabled {
+/* .disabled {
     color: currentColor;
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
-  }
+  } */
   .close-apps-modal{
     position: absolute;
     transform: translate(0, -200%);

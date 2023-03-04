@@ -27,7 +27,7 @@ export default {
                    <p>Keeps</p>
                  </div>
                  <div class="apps-btn-card ">
-                   <router-link :to="'/'" exact> <i class="fas fa-book" :class="showDisabled" ></i> </router-link> 
+                   <router-link :to="'/books'" exact> <i class="fas fa-book" :class="showDisabled" ></i> </router-link> 
                    <p>Books</p>
                 </div>
 
