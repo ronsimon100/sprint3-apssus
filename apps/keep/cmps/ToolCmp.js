@@ -3,9 +3,13 @@ import { eventBus } from "../../../services/event-bus.service.js";
 export default {
     props: ['note'],
     template: `
+<div>
 <input type="color" v-model="color"  @input="changeBgc"/>
 <button @click="pinNote">pin</button>
-<h2>hi</h2>`,
+<button @click="duplicate">duplicate</button>
+
+</div>
+`,
 
     data() {
         return {
@@ -18,13 +22,20 @@ export default {
             const note = JSON.parse(JSON.stringify(this.note))
             note.style.backgroundColor = this.color
             eventBus.emit('updateNote', note)
-        },pinNote() {
+        }, pinNote() {
             const note = JSON.parse(JSON.stringify(this.note))
             note.isPinned = !note.isPinned
             console.log('note :>> ', note);
             eventBus.emit('updateNote', note)
-    
-    }, 
+
+        }, duplicate() {
+            const note = JSON.parse(JSON.stringify(this.note))
+            console.log('note :>> ', note);
+            eventBus.emit('duplicate', note)
+        }
+
+
+        // }, 
 
 
 

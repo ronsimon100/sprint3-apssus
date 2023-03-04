@@ -1,12 +1,11 @@
 export default {
     props: ['note'],
     template: `
-    <article class="keepArticle">
-        <!-- <h2 >{{ note.id }}</h2> -->
-        <p>{{note.info.txt}}</p>
-        <button @click="remove(note.id)">x</button>
-    </article>
-`,
+    <img :src="note.info.url"   />
+    <button @click="remove(note.id)">x</button>    
+    
+    
+    `,
 
     data() {
         return {
@@ -22,10 +21,10 @@ export default {
 
     },
     created() {
-
+        // console.log('this.note :>> ', this.note);
     },
     components: {
 
     },
-    emits: [],
+    emits: ['remove'],
 }

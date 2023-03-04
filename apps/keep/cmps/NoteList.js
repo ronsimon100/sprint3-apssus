@@ -2,8 +2,9 @@ import NotePreview from './NotePreview.js'
 
 export default {
     props:['notes'],
+    emits:['remove'],
     template: `
-        <section>
+        <section class="listSec">
             <ul  class="note-list">
                 <li v-for="note in notes" :key="note.id">
                     <NotePreview :note="note" @remove="remove(note.id)"/>

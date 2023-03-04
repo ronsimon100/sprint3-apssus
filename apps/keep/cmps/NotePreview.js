@@ -1,13 +1,18 @@
 import NoteTxt from "./NoteTxt.js"
+import NoteImg from "./NoteImg.js"
 import ToolCmp from '../cmps/ToolCmp.js';
 export default {
     props: ['note'],
+    emits:['remove'],
     template: `
         <article class="note-preview" :style="note.style">
          
         <!-- pass the note in props -->
-        <component  :note="note" :is ="note.type" @remove="remove(note.id)"/>
-        <ToolCmp :note="note" />
+        <div>
+
+            <component  :note="note" :is ="note.type" @remove="remove"/>
+            <ToolCmp :note="note" />
+        </div>
         <!-- //tools component -->
     </article>
 
@@ -27,6 +32,7 @@ export default {
     //note type sould be NoteTxt
     components: {
         NoteTxt,
-        ToolCmp
+        ToolCmp,
+        NoteImg
     }
 }

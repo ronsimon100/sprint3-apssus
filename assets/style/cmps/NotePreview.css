@@ -3,14 +3,293 @@
     height: 200px;
     width: 300px;
     font-size: 1rem;
+    border-radius: 50px;
+    box-sizing: border-box;
 
-    
+
+
+
 }
-.note-list{
+
+.note-list {
     column-count: 3;
     list-style: none;
+    gap: 200px;
+
 }
 
 li {
     break-inside: avoid;
+    margin-block: 65px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+}
+
+
+/* Styles for the note preview article */
+.note-preview {
+    padding: 1rem;
+    color: white;
+}
+
+/* Styles for the inner container div */
+.note-preview>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styles for the note article */
+.keepArticle {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.keepArticle p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.keepArticle button {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keepArticle button:hover {
+    background-color: #777;
+}
+
+/* Styles for the tools container */
+.note-preview>div>div {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for the color picker input */
+.note-preview>div>div>input[type="color"] {
+    margin-right: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Styles for the pin and duplicate buttons */
+.note-preview>div>div>button {
+    padding: 0.5rem;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.note-preview>div>div>button:hover {
+    background-color: #777;
+}
+
+.note-preview>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.note-preview>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keepArticle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: transparent;
+    border-radius: 5px;
+    flex-grow: 1;
+    /* Add this */
+}
+
+.keepArticle p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.keepArticle button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keepArticle button:hover {
+    background-color: #777;
+}
+
+.note-preview>div>div {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.addKeep {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+input[type="text"] {
+    padding: 20px;
+    margin-right: 20px;
+    border: none;
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    width: 100%;
+    color: #333;
+}
+
+.file-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #f5f5f5;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 20px;
+}
+
+.file-input-container:hover {
+    background-color: #e5e5e5;
+}
+
+.file-input-container label {
+    font-size: 20px;
+    color: #333;
+    margin-left: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button[type="submit"] {
+    background-color: #0077ff;
+    color: #fff;
+    border: none;
+    padding: 20px;
+    border-radius: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0066cc;
+}
+
+
+
+.keepArticle {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 99%;
+    max-width: 99%;
+}
+
+.keepArticle p {
+    font-size: 20px;
+    color: #333;
+    margin-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.keepArticle button {
+    background-color: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.keepArticle button:hover {
+    color: #000;
+}
+
+.listSec {
+
+
+    background-color: azure;
+}
+
+
+
+.addKeep input[type="search"] {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.addKeep input[type="search"]::placeholder {
+    color: #ccc;
 }
