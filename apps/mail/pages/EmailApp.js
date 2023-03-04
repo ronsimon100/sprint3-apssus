@@ -2,26 +2,22 @@ import mailService from '../services/Email-service.js'
 import mailList from './EmailList.js'
 import AppHeader from '../../../cmps/AppHeader.js'
 import emailService from '../services/Email-service.js'
-
 export default {
     template: `
     <section class="mail-app">
-  
-        <header-cmp></header-cmp>
-        <router-view></router-view>
-        
+
+
         <div class="toast-msg" v-if="toastMsg">{{toastMsg}}</div>
         <div id="hamburger" @click="toggleNav" v-if="isMobile">🍔</div>
         <div class="content-container" @click="closeNav">
             <div class="inner-links-container" :class="navState" >
-                <router-link :to="'/mail-app/compose'"><button>compose</button></router-link> 
-                <router-link :to="'/mail-app/inbox'"><button>inbox</button></router-link> 
-                <router-link :to="'/mail-app/sent'"><button>sent</button></router-link> 
+                <router-link :to="'/mail-app/compose'"><button>compose</button></router-link>
+                <router-link :to="'/mail-app/inbox'"><button>inbox</button></router-link>
+                <router-link :to="'/mail-app/sent'"><button @click>sent</button></router-link>
             </div>
             <mail-List :emails="emails"></mail-List>
             <router-view class="email-list-show" @toast="showToast"></router-view>
         </div>
-        
     </section>
     `,
     data() {
@@ -30,11 +26,9 @@ export default {
             toastMsg: null,
             navOpen: false,
             unreadMails: ''
-
         }
     },
     props: [],
-
     methods: {
         showToast(msg = 'Action was Done') {
             this.toastMsg = msg
@@ -47,7 +41,6 @@ export default {
         closeNav() {
             this.navOpen = false
         }
-
     },
     computed: {
         numOfUnread() {
@@ -59,8 +52,6 @@ export default {
         isMobile() {
             return document.body.clientWidth < 780
         },
-
-
     },
     created() {
         emailService.getEmails()

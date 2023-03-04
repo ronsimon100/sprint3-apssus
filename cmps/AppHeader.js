@@ -1,5 +1,5 @@
 
-import { eventBus } from "../services/event-bus.service.js"
+import { eventBus, EMAILS_UNREAD  } from "../services/event-bus.service.js"
 import mailService from "../apps/mail/services/Email-service.js"
 
 export default {
@@ -64,7 +64,9 @@ export default {
     },
 
     created() {
-        
+        this.unreadMails = mailService.getNumOfUnRead()
+        eventBus.on(EMAILS_UNREAD, unreadMail =>
+            this.unreadMails = unreadMail)
     },
     components: {
         mailService,

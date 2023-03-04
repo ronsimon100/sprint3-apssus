@@ -73,13 +73,13 @@ text-decoration: underline;
 }
 .email-compose input{
     padding: 20px;
-    background-color: #99aab5;
+    background-color: #a1c5c5;
     transition: 1s;
     outline: none;
 
 }
 .email-compose input:focus{
-    background-color: lightgray;
+    background-color: rgb(99, 95, 114);
 }
 
 
@@ -155,7 +155,7 @@ color: black
     margin: 0 auto;
 }
 .apps-btn-card:hover{
-background-color: #c0cad3c2;
+background-color: #172633c2;
 }
 .disabled {
     color: currentColor;
@@ -200,14 +200,14 @@ background-color: 	#23272a
     display: flex;
     min-width: 170px;
     text-align: center;
-    background-color: #c0cad3;
+    background-color: #766f6f;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 50px; 
     height: 100vh;
 }
 .inner-links-container button{
-    background-color: #d3e1e8;
+    background-color: #0a6897;
     height: 40px;
     border-radius: 5px;
     width: 70%;
@@ -224,24 +224,24 @@ background-color: 	#23272a
 }
 
 .inner-links-container button:hover{
-    background-color: #e4ebf1;
-    color: black;
+    background-color: #6ea748;
+    color: rgb(219, 215, 215);
     width: 75%;
 }
 .email-preview-cmp{
     padding: 2px;
-    background-color: #d3e1e8;
+    background-color: #287528;
     transition: .5s;
     grid-template-columns: auto 180px;
 }
 
 .email-preview-cmp:nth-child(even){
    
-    background-color: #e8f2f9;
+    background-color: #7c848b;
    
 }
 .email-preview-cmp:hover{
-    background-color: rgba(184, 201, 226, 0.62);
+    background-color: rgba(26, 84, 172, 0.62);
 }
 
 .email-btns-container {
@@ -265,14 +265,14 @@ background-color: 	#23272a
 
 
 .email-btn:nth-child(odd):hover,  .email-btn:nth-child(even):active {
-    background-color: #c0cad3
+    background-color: #23a543
 }
 
 .email-btn:hover,  .email-btn:active {
-    background-color: #c0cad3
+    background-color: #229e56
 }
 .btn-delete:hover,  .btn-delete:active {
-    background-color: #f1afaf
+    background-color: #399750
 }
 .btn-delete:nth-child(even):hover,  .btn-delete:nth-child(even):active {
     background-color: #f30808
@@ -334,16 +334,16 @@ background-color: 	#23272a
     height: 50px;
     align-items: center;
     font-family: inherit;
-    background-color: #c0cad3;
+    background-color: #196fb6;
 }
 .unread-mail-count{
-    color: white;
+    color: rgb(10, 19, 8);
     justify-self: end;
   
 }
 .unread-mail-count i{
     font-size: 2rem;
-    color: white;
+    color: rgb(128, 114, 114);
     
 }
 .unread-mail-count span {
@@ -396,53 +396,48 @@ background-color: 	#23272a
 
 
 .mail-app-footer {
-    background-color: #3c3c3c;
+    background-color: #b0b9b4;
     position: absolute;
     width: 100%;
     height: 60px;
     text-align: center;
     line-height: 50px;
-    color: white;
+    color: rgb(32, 177, 141);
   
 
     
 }
 
 
-
-
-
-
-
-
 .bg {
-    /* The image used */
-    background-image: url('../img/background-cover\ -\ Copy.jpg');
-    /* Full height */
+    background-image: url('../img/background-cover.jpg');
     height: 100vh;
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+    color:#b3d7ff;
 }
 
 .bg-about{
-    background-image: url('../img/table-1558811_1920.jpg');
+    background-image: url('../img/aboutus.jpg');
     /* Full height */
     height: 100vh;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
+    padding-left: 5px;
     background-size: cover;
+    color:#b3d7ff;
 }
+
+
 .about-txt-container{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     width: 630px;
     position: absolute;
     top: 208px;
-    transform: rotate(-10deg);
-    left: 33%
+    left: 3%
 }
 
 
@@ -497,7 +492,7 @@ background-color: 	#23272a
         position: absolute;
     }
     .app-header{
-        background-color: #3c3c3c;
+        background-color: #10bb57;
         display: grid;
         grid-template-columns: 50px auto 50px 60px;
         align-content: center;
@@ -519,8 +514,8 @@ background-color: 	#23272a
     .inner-links-container{
         display: flex;
         min-width: 180px;
-        background-color: rgba(60, 60, 60, 0.8);
-        border-right: 2px solid #ffffff73;
+        background-color: rgba(2, 2, 44, 0.8);
+        border-right: 2px solid #07061873;
 
 
     }
@@ -571,7 +566,6 @@ background-color: 	#23272a
             font-size: 14px;
             position: absolute;
             top: 208px;
-            transform: rotate(-9deg);
             left: 7%;
         }
         .about-nav-bar a{

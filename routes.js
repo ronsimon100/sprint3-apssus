@@ -5,8 +5,6 @@ import about from './views/AboutUs.js'
 import mailList from './apps/mail/pages/EmailList.js'
 import EmailCompose from './apps/mail/cmps/EmailCompose.js'
 
-
-
 const { createRouter, createWebHashHistory } = VueRouter
 const options = {
   history: createWebHashHistory(),
@@ -20,10 +18,8 @@ const options = {
     ] },
     { path: '/keep', component: keepApp},
     {path: '/about', component: about},
-
 ],
 }
-
 export const router = createRouter(options)
 
 
