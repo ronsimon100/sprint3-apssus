@@ -1,7 +1,6 @@
-
 import mailDetails from '../cmps/EmailDetails.js'
 import mailService from '../services/Email-service.js';
-import { eventBus, REPLY, EMAILS_UNREAD } from '../../../services/event-bus.service.js'
+import { eventBus, EMAILS_UNREAD, REPLY } from '../../../services/event-bus.service.js'
 import utilService from '../../../services/util-service.js'
 
 export default {
@@ -14,7 +13,7 @@ export default {
                 <div class="email-prev-subj" ref="subject">{{limitSubject}}</div>
                 <div class="email-prev-time">{{formatDate}}</div>
             </div>
-            <body-text v-else  :currEmail="email">  </body-text>
+            <mail-details v-else  :currEmail="email">  </mail-details>
             <div class="email-btns-container flex" v-if="btnsContainerShouldShow">
                 <button class="btn email-btn btn-read-unread" @click.stop="toogleReadEmail" 
                     v-if="isInbox"><i :class="envelopeIcon"></i></button>
@@ -104,6 +103,7 @@ export default {
             var unread = !this.email.isRead
             mailService.deleteEmail(this.email)
             .then(()=> {
+            utilService.saveToStorage('delete', this.email)
                 if (unread) {
                 eventBus.emit(EMAILS_UNREAD, mailService.updateNumOfUnread(-1))
                 
@@ -113,7 +113,7 @@ export default {
         reply() {
             console.log(this.email)
             mailService.saveEmailForReply (this.email)
-            this.$router.push('/email-app/compose')
+            this.$router.push('/mail-app/compose')
             eventBus.emit(REPLY, this.email)
             utilService.saveToStorage('email',this.email)
         }

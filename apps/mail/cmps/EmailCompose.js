@@ -1,6 +1,6 @@
 import mailService from "../services/Email-service.js"
 import utilService from '../../../services/util-service.js';
-import { eventBus, REPLY, EMAILS_UNREAD } from '../../../services/event-bus.service.js'
+import { eventBus, REPLY, EMAILS_UNREAD  } from '../../../services/event-bus.service.js'
 
 
 export default {
@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             composed: {
-                type: 'sent',
+                type: 'sent', 
                 id: null,
                 subject: '',
                 body: '',
@@ -27,7 +27,8 @@ export default {
                 date: '',
                 from: '',
                 to: '',
-            }
+            },
+            // replyedTo: null
 
         }
     },
@@ -56,13 +57,14 @@ export default {
             mailService.sendEmail(this.composed)
                 .then(() => {
                     this.$router.go(-1)
-                    this.emit('toast', 'Email was Sent')
+                    this.$emit('toast', 'Email was Sent')
                     if (this.composed.to === 'self') {
                         var unread = mailService.updateNumOfUnread(1)
                         eventBus.emit(EMAILS_UNREAD, unread)
                         
                     }
-                })
+                 })
+                //  .then(utilService.saveToStorage(EMAIL_KEY))
         },
         
     },

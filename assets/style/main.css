@@ -200,7 +200,7 @@ background-color: 	#23272a
     display: flex;
     min-width: 170px;
     text-align: center;
-    background-color: #5e6870;
+    background-color: #766f6f;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 50px; 
@@ -334,7 +334,7 @@ background-color: 	#23272a
     height: 50px;
     align-items: center;
     font-family: inherit;
-    background-color: #b6c5d1;
+    background-color: #196fb6;
 }
 .unread-mail-count{
     color: rgb(10, 19, 8);
@@ -409,10 +409,27 @@ background-color: 	#23272a
 }
 
 
+.bg {
+    background-image: url('../img/background-cover.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color:#b3d7ff;
+}
 
-
-
-
+.bg-about{
+    background-image: url('../img/aboutus.jpg');
+    /* Full height */
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-left: 5px;
+    background-size: cover;
+    color:#b3d7ff;
+}
 
 
 .about-txt-container{
@@ -420,8 +437,7 @@ background-color: 	#23272a
     width: 630px;
     position: absolute;
     top: 208px;
-    transform: rotate(-10deg);
-    left: 33%
+    left: 3%
 }
 
 
@@ -476,7 +492,7 @@ background-color: 	#23272a
         position: absolute;
     }
     .app-header{
-        background-color: #3c3c3c;
+        background-color: #10bb57;
         display: grid;
         grid-template-columns: 50px auto 50px 60px;
         align-content: center;
@@ -550,7 +566,6 @@ background-color: 	#23272a
             font-size: 14px;
             position: absolute;
             top: 208px;
-            transform: rotate(-9deg);
             left: 7%;
         }
         .about-nav-bar a{
